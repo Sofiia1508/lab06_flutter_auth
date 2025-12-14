@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
-import 'signup_screen.dart';
-import 'reset_password_screen.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatelessWidget {
+  const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text('Sign up')),
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Login',
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            const TextField(
+              decoration: InputDecoration(
+                labelText: 'Name',
+                border: OutlineInputBorder(),
+              ),
             ),
-            const SizedBox(height: 32),
-
+            const SizedBox(height: 16),
             const TextField(
               decoration: InputDecoration(
                 labelText: 'Login',
@@ -26,7 +25,6 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-
             const TextField(
               obscureText: true,
               decoration: InputDecoration(
@@ -42,37 +40,18 @@ class LoginScreen extends StatelessWidget {
                   context: context,
                   builder: (_) => const AlertDialog(
                     title: Text('Message'),
-                    content: Text('Need to implement'),
+                    content: Text('Registration completed'),
                   ),
                 );
               },
-              child: const Text('Login'),
+              child: const Text('Register'),
             ),
 
             const SizedBox(height: 12),
 
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const ResetPasswordScreen(),
-                  ),
-                );
-              },
-              child: const Text('Forgot password?'),
-            ),
-
             OutlinedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const SignupScreen(),
-                  ),
-                );
-              },
-              child: const Text('Sign up'),
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Back'),
             ),
           ],
         ),
