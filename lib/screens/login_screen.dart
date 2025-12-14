@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'signup_screen.dart';
 import 'reset_password_screen.dart';
@@ -8,75 +9,119 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Login',
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 32),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFFF6D1E7),
+              Color(0xFFE3D7FF),
+              Color(0xFFDFF5F2),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: Center(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(26),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+              child: Container(
+                width: 360,
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.35),
+                  borderRadius: BorderRadius.circular(26),
+                  border: Border.all(
+                    color: Colors.white.withOpacity(0.4),
+                  ),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      'Welcome back',
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF4A4A6A),
+                      ),
+                    ),
+                    const SizedBox(height: 24),
 
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'Login',
-                border: OutlineInputBorder(),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Login',
+                        prefixIcon: const Icon(Icons.person_outline),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+
+                    TextField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        hintText: 'Password',
+                        prefixIcon: const Icon(Icons.lock_outline),
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFB39DDB),
+                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (_) => const AlertDialog(
+                              title: Text('Message'),
+                              content: Text('Need to implement'),
+                            ),
+                          );
+                        },
+                        child: const Text('Login'),
+                      ),
+                    ),
+
+                    const SizedBox(height: 8),
+
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const ResetPasswordScreen(),
+                          ),
+                        );
+                      },
+                      child: const Text('Forgot password?'),
+                    ),
+
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const SignupScreen(),
+                          ),
+                        );
+                      },
+                      child: const Text('Create account'),
+                    ),
+                  ],
+                ),
               ),
             ),
-            const SizedBox(height: 16),
-
-            const TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 24),
-
-            ElevatedButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (_) => const AlertDialog(
-                    title: Text('Message'),
-                    content: Text('Need to implement'),
-                  ),
-                );
-              },
-              child: const Text('Login'),
-            ),
-
-            const SizedBox(height: 12),
-
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const ResetPasswordScreen(),
-                  ),
-                );
-              },
-              child: const Text('Forgot password?'),
-            ),
-
-            OutlinedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const SignupScreen(),
-                  ),
-                );
-              },
-              child: const Text('Sign up'),
-            ),
-          ],
+          ),
         ),
       ),
     );
   }
 }
+

@@ -6,52 +6,60 @@ class SignupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Sign up')),
+      appBar: AppBar(
+        title: const Text('Create account'),
+        backgroundColor: const Color(0xFFE3D7FF),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
           children: [
-            const TextField(
+            TextField(
               decoration: InputDecoration(
-                labelText: 'Name',
-                border: OutlineInputBorder(),
+                hintText: 'Name',
+                prefixIcon: const Icon(Icons.badge_outlined),
               ),
             ),
             const SizedBox(height: 16),
-            const TextField(
+
+            TextField(
               decoration: InputDecoration(
-                labelText: 'Login',
-                border: OutlineInputBorder(),
+                hintText: 'Login',
+                prefixIcon: const Icon(Icons.person_outline),
               ),
             ),
             const SizedBox(height: 16),
-            const TextField(
+
+            TextField(
               obscureText: true,
               decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(),
+                hintText: 'Password',
+                prefixIcon: const Icon(Icons.lock_outline),
               ),
             ),
             const SizedBox(height: 24),
 
-            ElevatedButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (_) => const AlertDialog(
-                    title: Text('Message'),
-                    content: Text('Registration completed'),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFB39DDB),
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
                   ),
-                );
-              },
-              child: const Text('Register'),
-            ),
-
-            const SizedBox(height: 12),
-
-            OutlinedButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Back'),
+                ),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) => const AlertDialog(
+                      title: Text('Success'),
+                      content: Text('Registration completed'),
+                    ),
+                  );
+                },
+                child: const Text('Register'),
+              ),
             ),
           ],
         ),
